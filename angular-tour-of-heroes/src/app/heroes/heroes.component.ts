@@ -16,11 +16,19 @@ export class HeroesComponent implements OnInit {
   selectedHero: Hero;
   ids: AppId[];
 
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    // console.log(hero.id);
+  
+  constructor(private heroService: HeroService, private intercomService: IntercomService) {
   }
+
+  ngOnInit() {
+    this.getHeroes();
+    this.bootIntercome();
+  }
+
+  // onSelect(hero: Hero): void {
+  //   this.selectedHero = hero;
+  //   // console.log(hero.id);
+  // }
 
   getHeroes(): void {
     this.heroService.getHeroes()
@@ -47,14 +55,6 @@ export class HeroesComponent implements OnInit {
       app_id: id,
       custom_launcher_selector: '#my_custom_link'
     })
-  }
-  
-  constructor(private heroService: HeroService, private intercomService: IntercomService) {
-  }
-
-  ngOnInit() {
-    this.getHeroes();
-    this.bootIntercome();
   }
 
 }
